@@ -1,0 +1,362 @@
+a)
+
+0:
+S   ->  . I $                       , $
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (1,I), (2,try), (3,instr)
+
+1:
+S   ->  I . $                       , $
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;), (38,$)
+
+2:
+I   ->  try . I catch I finally I   , {$, ;}
+I   ->  try . I catch I             , {$, ;}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (5,I), (6, try), (7,instr)
+
+3:
+I   ->  instr .                     , {$, ;}
+
+4:
+I   ->  I ; . I                     , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (8,I), (2,try), (3,instr)
+
+5:
+I   ->  try I . catch I finally I   , {$, ;}
+I   ->  try I . catch I             , {$, ;}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (9,catch), (10,;)
+
+6:
+I   ->  try . I catch I finally I   , {catch, ;}
+I   ->  try . I catch I             , {catch, ;}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (11,I), (6,try), (7,instr)
+
+7:
+I   ->  instr .                     , {catch, ;}
+
+8:
+I   ->  I ; I .                     , {$, ;}
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;)
+
+9:
+I   ->  try I catch . I finally I   , {$, ;}
+I   ->  try I catch . I             , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;, finally}
+I   ->  . try I catch I             , {$, ;, finally}
+I   ->  . I ; I                     , {$, ;, finally}
+I   ->  . instr                     , {$, ;, finally}
+EDGES: (12,I), (13,try), (14,instr)
+
+
+10:
+I   ->  I ; . I                     , {catch, ;}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (15,I), (6,try), (7,instr)
+
+
+11:
+I   ->  try I . catch I finally I   , {catch, ;}
+I   ->  try I . catch I             , {catch, ;}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (16,catch), (10,;)
+
+12:
+I   ->  try I catch I . finally I   , {$, ;}
+I   ->  try I catch I .             , {$, ;}
+I   ->  I . ; I                     , {$, ;, finally}
+EDGES: (17,finally), (18,;)
+
+13:
+I   ->  try . I catch I finally I   , {$, ;, finally}
+I   ->  try . I catch I             , {$, ;, finally}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (19,I), (6,try), (7,instr)
+
+14:
+I   ->  instr .                     , {$, ;, finally}
+
+
+15:
+I   ->  I ; I .                     , {catch, ;}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (10,;)
+
+16:
+I   ->  try I catch . I finally I   , {catch, ;}
+I   ->  try I catch . I             , {catch, ;}
+I   ->  . try I catch I finally I   , {catch, ;, finally}
+I   ->  . try I catch I             , {catch, ;, finally}
+I   ->  . I ; I                     , {catch, ;, finally}
+I   ->  . instr                     , {catch, ;, finally}
+EDGES: (20, I), (21,try), (22,instr)
+
+17:
+I   ->  try I catch I finally . I   , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (23, I), (2,try), (3,instr)
+
+18:
+I   ->  I ; . I                     , {$, ;, finally}
+I   ->  . try I catch I finally I   , {$, ;, finally}
+I   ->  . try I catch I             , {$, ;, finally}
+I   ->  . I ; I                     , {$, ;, finally}
+I   ->  . instr                     , {$, ;, finally}
+EDGES: (24, I), (13,try), (14,instr)
+
+19:
+I   ->  try I . catch I finally I   , {$, ;, finally}
+I   ->  try I . catch I             , {$, ;, finally}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (25, catch), (10,;)
+
+20:
+I   ->  try I catch I . finally I   , {catch, ;}
+I   ->  try I catch I .             , {catch, ;}
+I   ->  I . ; I                     , {catch, ;, finally}
+EDGES: (26, finally), (27, ;)
+
+21:
+I   ->  try . I catch I finally I   , {catch, ;, finally}
+I   ->  try . I catch I             , {catch, ;, finally}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (28,I), (6,try), (7,instr)
+
+22:
+I   ->  instr .                     , {catch, ;, finally}
+
+23:
+I   ->  try I catch I finally I .   , {$, ;}
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;)
+
+24:
+I   ->  I ; I .                     , {$, ;, finally}
+I   ->  I . ; I                     , {$, ;, finally}
+EDGES: (18,;)
+
+25:
+I   ->  try I catch . I finally I   , {$, ;, finally}
+I   ->  try I catch . I             , {$, ;, finally}
+I   ->  . try I catch I finally I   , {$, ;, finally}
+I   ->  . try I catch I             , {$, ;, finally}
+I   ->  . I ; I                     , {$, ;, finally}
+I   ->  . instr                     , {$, ;, finally}
+EDGES: (29,I), (13,try), (14,instr)
+
+26:
+I   ->  try I catch I finally . I   , {catch, ;}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (30,I), (6,try), (7,instr)
+
+27:
+I   ->  I ; . I                     , {catch, ;, finally}
+I   ->  . try I catch I finally I   , {catch, ;, finally}
+I   ->  . try I catch I             , {catch, ;, finally}
+I   ->  . I ; I                     , {catch, ;, finally}
+I   ->  . instr                     , {catch, ;, finally}
+EDGES: (31,I), (21,try)
+
+
+28:
+I   ->  try I . catch I finally I   , {catch, ;, finally}
+I   ->  try I . catch I             , {catch, ;, finally}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (32, catch), (10,;)
+
+29:
+I   ->  try I catch I . finally I   , {$, ;, finally}
+I   ->  try I catch I .             , {$, ;, finally}
+I   ->  I . ; I                     , {$, ;, finally}
+EDGES: (33,finally), (18,;)
+
+30:
+I   ->  try I catch I finally I .   , {catch, ;}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (10,;)
+
+31:
+I   ->  I ; I .                     , {catch, ;, finally}
+I   ->  I . ; I                     , {catch, ;, finally}
+EDGES: (27,;)
+
+32:
+I   ->  try I catch . I finally I   , {catch, ;, finally}
+I   ->  try I catch . I             , {catch, ;, finally}
+I   ->  . try I catch I finally I   , {catch, ;, finally}
+I   ->  . try I catch I             , {catch, ;, finally}
+I   ->  . I ; I                     , {catch, ;, finally}
+I   ->  . instr                     , {catch, ;, finally}
+EDGES: (34,I), (21,try), (22,instr)
+
+
+33:
+I   ->  try I catch I finally . I   , {$, ;, finally}
+I   ->  . try I catch I finally I   , {$, ;, finally}
+I   ->  . try I catch I             , {$, ;, finally}
+I   ->  . I ; I                     , {$, ;, finally}
+I   ->  . instr                     , {$, ;, finally}
+EDGES: (35,I), (13,try), (14,instr)
+
+
+34:
+I   ->  try I catch I . finally I   , {catch, ;, finally}
+I   ->  try I catch I .             , {catch, ;, finally}
+I   ->  I . ; I                     , {catch, ;, finally}
+EDGES: (36,finally), (27,;)
+
+35:
+I   ->  try I catch I finally I .   , {$, ;, finally}
+I   ->  I . ; I                     , {$, ;, finally}
+EDGES: (18,;)
+
+36:
+I   ->  try I catch I finally . I   , {catch, ;, finally}
+EDGES: (37,I)
+
+37:
+I   ->  try I catch I finally I .   , {catch, ;, finally}
+
+38:
+S   ->  I $ .                       , $
+
+
+
+
+b)
+Conflictos shift/reduce en : 8, 12, 15, 20, 23, 24, 29, 30, 31, 34, 35
+
+8 reduce
+12 shift
+15 reduce
+20 shift
+23 reduce
+24 reduce
+29 shift
+30 reduce
+31 reduce
+34 shift
+35 reduce
+
+
+c)
+
+0:
+S   ->  . I $                       , $
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (1,I), (2,try), (3,instr)
+
+{1}:
+S   ->  I . $                       , $
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;), (38,$)
+
+{2,6,13,21}:
+I   ->  try . I catch I finally I   , {$, ;}
+I   ->  try . I catch I             , {$, ;}
+I   ->  . try I catch I finally I   , {catch, ;}
+I   ->  . try I catch I             , {catch, ;}
+I   ->  . I ; I                     , {catch, ;}
+I   ->  . instr                     , {catch, ;}
+EDGES: (5,I), (6, try), (7,instr)
+
+{3,7,14,22}:
+I   ->  instr .                     , {$, ;}
+
+{4, 10, 18, 27} :
+I   ->  I ; . I                     , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (8,I), (2,try), (3,instr)
+
+
+
+{5,11,19,28}:
+I   ->  try I . catch I finally I   , {$, ;}
+I   ->  try I . catch I             , {$, ;}
+I   ->  I . ; I                     , {catch, ;}
+EDGES: (9,catch), (10,;)
+
+
+
+{8,15,24,31}:
+I   ->  I ; I .                     , {$, ;}
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;)
+
+{9,16,25,32}:
+I   ->  try I catch . I finally I   , {$, ;}
+I   ->  try I catch . I             , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;, finally}
+I   ->  . try I catch I             , {$, ;, finally}
+I   ->  . I ; I                     , {$, ;, finally}
+I   ->  . instr                     , {$, ;, finally}
+EDGES: (12,I), (13,try), (14,instr)
+
+{12,20,29,34}:
+I   ->  try I catch I . finally I   , {$, ;}
+I   ->  try I catch I .             , {$, ;}
+I   ->  I . ; I                     , {$, ;, finally}
+EDGES: (17,finally), (18,;)
+
+{17,26,33}:
+I   ->  try I catch I finally . I   , {$, ;}
+I   ->  . try I catch I finally I   , {$, ;}
+I   ->  . try I catch I             , {$, ;}
+I   ->  . I ; I                     , {$, ;}
+I   ->  . instr                     , {$, ;}
+EDGES: (23, I), (2,try), (3,instr)
+
+
+
+{23,30,35}:
+I   ->  try I catch I finally I .   , {$, ;}
+I   ->  I . ; I                     , {$, ;}
+EDGES: (4,;)
+
+{36}:
+I   ->  try I catch I finally . I   , {catch, ;, finally}
+EDGES: (37,I)
+
+{37}:
+I   ->  try I catch I finally I .   , {catch, ;, finally}
+
+{38}:
+S   ->  I $ .                       , $
