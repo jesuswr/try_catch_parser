@@ -259,15 +259,15 @@ b)
 Conflictos shift/reduce en : 8, 12, 15, 20, 23, 24, 29, 30, 31, 34, 35
 
 8 reduce
-12 shift
+12 si viene $ reduce, si no hacer shift de la tercera regla
 15 reduce
-20 shift
+20 si viene catch reduce, si no hacer shift de la tercera regla
 23 reduce
 24 reduce
-29 shift
+29 si viene $ reduce, si viene ; shift de la tercera regla, si viene finally shift de la primera regla
 30 reduce
 31 reduce
-34 shift
+34 si viene catch reduce,  si viene ; shift de la tercera regla, si viene finally shift de la primera regla
 35 reduce
 
 
@@ -359,5 +359,5 @@ S   ->  I $ .                       , $
 Conflictos shift/reduce en: 8, 12, 23
 
 8 reduce
-12 shift
+12 si viene finally shift de la primera regla, si viene ; shift de la tercera regla, si viene $ o catch reduce
 23 reduce
